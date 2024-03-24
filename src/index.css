@@ -1,0 +1,98 @@
+:root {
+  --lime: lime;
+  --background: rgb(204, 204, 204);
+  --outBorder: rgb(138, 138, 138);
+  --yellow: rgb(255, 149, 0);
+  --button: rgb(57, 57, 57);
+  --green: green;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculatorWrapper {
+  width: 22rem;
+  height: fit-content; /*change this*/
+  border-radius: 10px;
+}
+
+/* ------display.jsx-------- */
+#display {
+  height: 6rem;
+  text-align: end;
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px 0 green;
+}
+#operation {
+  height: 3rem;
+  color: var(--yellow);
+  padding-right: 5px;
+  font-size: xx-large;
+}
+#result {
+  padding-right: 5px;
+  height: 3rem;
+  height: 1px solid white;
+  color: white;
+  font-size: xx-large;
+}
+
+/*-----Controls.jsx------*/
+
+#controlsContainer {
+  margin-top: 5px;
+  border-radius: 10px;
+  background-color: black;
+  padding: 1rem;
+  box-shadow: -5px 5px 10px 0 green;
+}
+#controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.button {
+  background-color: var(--button);
+  color: white;
+  font-size: xx-large;
+  border-radius: 50%;
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}
+.blank {
+  width: 9rem;
+  border-radius: 30px;
+}
+.invisible {
+  background-color: black;
+  cursor: auto;
+}
+.equals {
+  background-color: var(--green);
+}
+.operators {
+  background-color: var(--yellow);
+}
+#clear {
+  background-color: var(--background);
+  color: black;
+}
+
+/*designed by*/
+#developer {
+  text-align: center;
+}
+#myName {
+  color: var(--green);
+}
