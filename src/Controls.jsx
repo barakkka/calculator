@@ -30,6 +30,7 @@ function Controls({ sendToParent, sendResult }) {
       if (e.target.classList.contains("number")) {
         if (input !== "") {
           setInput((prev) => `${prev}${e.target.innerText}`);
+          setOperatorCount(0);
         } else {
           setInput(e.target.innerText);
         }
@@ -39,6 +40,7 @@ function Controls({ sendToParent, sendResult }) {
         if (input !== "" && operatorCount < 2) {
           setInput((prev) => `${prev}${e.target.innerText}`);
           setOperatorCount((prev) => prev + 1);
+          setPressed("sign");
         }
       }
       //Clicked on Equals
