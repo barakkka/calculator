@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 function Controls({ sendToParent, sendResult }) {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
-  const [clicked, setClicked] = useState(""); //continue setting cliced upon each
+  const [pressed, setPressed] = useState(""); //continue setting clicked upon each
+  const [operatorCount, setOperatorCount] = useState(0);
 
   useEffect(() => {
     sendToParent(input);
@@ -11,9 +12,6 @@ function Controls({ sendToParent, sendResult }) {
   useEffect(() => {
     sendResult(result);
   }, [result]);
-
-  let pressed = null;
-  let operatorCount = 0;
 
   const handleButtonClick = (e) => {
     if (input.length <= 18) {
@@ -25,7 +23,7 @@ function Controls({ sendToParent, sendResult }) {
           } else {
             setInput((prev) => `${prev}.`);
           }
-          pressed = "point";
+          setPressed("point");
         }
       }
       // Clicked on a number
@@ -38,16 +36,14 @@ function Controls({ sendToParent, sendResult }) {
       }
       //Clicked on arithmetic
       if (e.target.classList.contains("operators")) {
-        if (input !== "") {
-          if (operatorCount < 2) {
-            setInput((prev) => `${prev}${e.target.innerText}`);
-            operatorCount++;
-          }
+        if (input !== "" && operatorCount < 2) {
+          setInput((prev) => `${prev}${e.target.innerText}`);
+          setOperatorCount((prev) => prev + 1);
         }
       }
       //Clicked on Equals
       if (e.target.classList.contains("equals")) {
-        setClicked("equals");
+        setPressed("equals");
         let result;
         try {
           result = eval(input);
@@ -60,12 +56,16 @@ function Controls({ sendToParent, sendResult }) {
       if (e.target.getAttribute("id") === "clear") {
         setInput("");
         setResult("");
+        setPressed("");
+        setOperatorCount(0);
       }
     } else {
       //Clicked on AC
       if (e.target.getAttribute("id") === "clear") {
         setInput("");
         setResult("");
+        setPressed("");
+        setOperatorCount(0);
       } else {
         alert("Arithmetic is too long");
       }
